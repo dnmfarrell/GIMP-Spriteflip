@@ -4,7 +4,7 @@ Spriteflip
 Useful for working with sprites.
 
 ![](spriteflip.gif)
-
+![](menu.png)
 
 How to use
 ----------
