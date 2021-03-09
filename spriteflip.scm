@@ -1,11 +1,12 @@
 ;
 ; Spriteflip
 ;
-; Flip regions of an image horizontally or vertically. Useful for creating
-; reversed spritesheets. The image should be flattened in a single layer
+; Flip or rotate regions of an image. Useful for working with sprites.
+; The image should be flattened in a single layer.
 ;
 ; Copyright 2021 David Farrell
-
+; https://github.com/dnmfarrell/GIMP-Spriteflip
+;
 ; This program is free software: you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
 ; the Free Software Foundation; either version 3 of the License, or
@@ -41,8 +42,11 @@
 (define (script-fu-spriteflip-flip x y w h layer img flipID)
   (gimp-image-select-rectangle img CHANNEL-OP-REPLACE x y w h)
   (gimp-floating-sel-to-layer (car (gimp-selection-float layer 0 0)))
-  (gimp-item-transform-flip-simple
-    (car (gimp-image-get-active-layer img)) flipID TRUE 0))
+  (if (<= flipID 1)
+    (gimp-item-transform-flip-simple
+      (car (gimp-image-get-active-layer img)) flipID TRUE 0) 
+    (gimp-item-transform-rotate-simple
+      (car (gimp-image-get-active-layer img)) (- flipID 2) TRUE 0 0)))
 
 (script-fu-register "script-fu-spriteflip"
   "Spriteflip"
@@ -54,7 +58,11 @@
   SF-IMAGE "Image"        -1 ;current image obj
   SF-VALUE "Frame Width"  ""
   SF-VALUE "Frame Height" ""
-  SF-OPTION "Transformation" '("Horizontal Flip" "Vertical Flip")
+  SF-OPTION "Transformation" '("Flip Horizontal"
+                               "Flip Vertical"
+                               "Rotate 90"
+                               "Rotate 180"
+                               "Rotate 270")
 )
 
 (script-fu-menu-register "script-fu-spriteflip"

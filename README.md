@@ -1,17 +1,17 @@
 Spriteflip
 ==========
-[GIMP](https://www.gimp.org/) plugin to flip regions of an image horizontally
-or vertically. Useful for creating reversed spritesheets.
+[GIMP](https://www.gimp.org/) plugin to flip or rotate regions of an image.
+Useful for working with sprites.
 
 ![](spriteflip.gif)
 
 
 How to use
 ----------
-1. **The image should be in a single layer before running this tool**.
+1. **The image should be in a single layer before running this tool**
 2. Open the Spriteflip menu `Tools->Transform Tools->Spriteflip`
 3. Input the width and height of each sprite frame in pixels
-4. Select a horizontal (default) or vertical transformation
+4. Select the transformation you want; Flip horizontal is the default
 5. Click OK
 
 Install
